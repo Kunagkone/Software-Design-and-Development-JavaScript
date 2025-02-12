@@ -164,9 +164,31 @@ let person = {
 
 ### บันทึกผลการทดลอง 2.1
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลนักศึกษา</title>
+</head>
+<body>
+    <h2>ข้อมูลนักศึกษา</h2>
+    <p><strong>รหัสนักศึกษา:</strong> <span id="studentId"></span></p>
+    <p><strong>ชื่อนักศึกษา:</strong> <span id="studentName"></span></p>
+    <p><strong>คะแนนสอบกลางภาค:</strong> <span id="midtermScore"></span></p>
+    
+    
+    <h3>ข้อมูลเพิ่มเติม</h3>
+    <p><strong>สาขาวิชา:</strong> <span id="major"></span></p>
+    <p><strong>เกรดเฉลี่ย:</strong> <span id="gpa"></span></p>
+
+    <!-- ลิงก์ไฟล์ JavaScript -->
+    <script src="k.js"></script>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.1]
+![image](https://github.com/user-attachments/assets/75896938-78a9-4c2a-a06b-cb3525648123)
 
 
 ### 2.2 การดำเนินการทางคณิตศาสตร์
