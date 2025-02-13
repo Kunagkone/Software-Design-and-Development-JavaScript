@@ -240,9 +240,20 @@ number /= 2;          // เท่ากับ number = number / 2
 
 ### บันทึกผลการทดลอง 2.2
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="AverageScore.js"></script>
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.2]
+![image](https://github.com/user-attachments/assets/27cdf530-132d-46a2-8e05-01af58f06b25)
 
 ### 2.3 การควบคุมการทำงาน
 
