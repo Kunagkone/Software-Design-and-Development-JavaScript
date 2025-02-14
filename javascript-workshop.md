@@ -384,9 +384,85 @@ for (let i = 1; i <= 5; i++) {
 
 ### บันทึกผลการทดลอง 2.3
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Task</title>
+</head>
+<body>
+
+    <h2>ตรวจสอบเลขคู่-เลขคี่</h2>
+    <p id="evenOddResult"></p>
+
+    <h2>ตารางสูตรคูณ แม่ 2 (For Loop)</h2>
+    <p id="multiplicationTable2"></p>
+
+    <h2>ตารางสูตรคูณ แม่ 3 (While Loop)</h2>
+    <p id="multiplicationTable3"></p>
+
+    <h2>นับถอยหลังจาก 10 ถึง 1</h2>
+    <p id="countdown"></p>
+
+    <h2>ตรวจสอบช่วงวัยตามอายุ</h2>
+    <p id="ageCategory"></p>
+
+    <script>
+       
+        function checkEvenOdd(number) {
+            let message = (number % 2 === 0) ? number + " เป็นเลขคู่" : number + " เป็นเลขคี่";
+            document.getElementById("evenOddResult").innerText = message;
+        }
+        let num = 7; 
+        checkEvenOdd(num);
+
+        
+        let table2 = "";
+        for (let i = 1; i <= 12; i++) {
+            table2 += "2 x " + i + " = " + (2 * i) + "<br>";
+        }
+        document.getElementById("multiplicationTable2").innerHTML = table2;
+
+       
+        let table3 = "";
+        let j = 1;
+        while (j <= 12) {
+            table3 += "3 x " + j + " = " + (3 * j) + "<br>";
+            j++;
+        }
+        document.getElementById("multiplicationTable3").innerHTML = table3;
+
+        
+        let countdownText = "";
+        for (let k = 10; k >= 1; k--) {
+            countdownText += k + " ";
+        }
+        document.getElementById("countdown").innerText = countdownText;
+
+        
+        function checkAgeCategory(age) {
+            let category = "";
+            if (age >= 0 && age <= 12) {
+                category = "วัยเด็ก";
+            } else if (age >= 13 && age <= 19) {
+                category = "วัยรุ่น";
+            } else if (age >= 20) {
+                category = "วัยผู้ใหญ่";
+            } else {
+                category = "อายุไม่ถูกต้อง";
+            }
+            document.getElementById("ageCategory").innerText = "อายุ " + age + " ปี เป็น " + category;
+        }
+        let age = 100; // กำหนดอายุ
+        checkAgeCategory(age);
+    </script>
+
+</body>
+</html>
 ```
 [รูปผลการทดลองที่ 2.3]
+![image](https://github.com/user-attachments/assets/390ceddd-dd49-46c6-b647-87b30df74512)
 
 ### 2.4 Functions และ Arrow Functions
 
