@@ -846,9 +846,76 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 3.1
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณ BMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 150px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>คำนวณค่า BMI</h2>
+    <label>น้ำหนัก (kg): </label>
+    <input type="number" id="weight" placeholder="เช่น 70">
+    <br>
+    <label>ส่วนสูง (cm): </label>
+    <input type="number" id="height" placeholder="เช่น 170">
+    <br>
+    <button onclick="calculateBMI()">คำนวณ</button>
+    <div id="result"></div>
+
+    <script>
+        // ฟังก์ชันคำนวณ BMI และแสดงผล (ใช้ Arrow function)
+        const calculateBMI = () => {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value) / 100; // แปลง cm เป็น m
+
+            if (isNaN(weight) || isNaN(height) || height === 0) {
+                document.getElementById("result").innerHTML = "กรุณากรอกข้อมูลให้ถูกต้อง";
+                return;
+            }
+
+            let bmi = (weight / (height * height)).toFixed(2);
+
+            // ฟังก์ชันตรวจสอบสถานะน้ำหนัก
+            const getBMICategory = (bmi) => 
+                bmi < 18.5 ? "ผอม" :
+                bmi < 24.9 ? "สมส่วน" :
+                "อ้วน";
+
+            let category = getBMICategory(bmi);
+
+            // แสดงผล
+            document.getElementById("result").innerHTML = `ค่า BMI ของคุณคือ ${bmi} (${category})`;
+        };
+    </script>
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 3.1]
+![image](https://github.com/user-attachments/assets/1d1821f2-bb92-46e4-8d50-8763ff14a69b)
 
 ## การทดลองที่ 3.2 : การสร้างฟอร์มสำหรับจองห้องพัก
 การสร้างฟอร์มลงทะเบียนเพื่อรวบรวมข้อมูลที่จำเป็นสำหรับการจองห้องพัก
