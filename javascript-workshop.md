@@ -1332,9 +1332,199 @@ input:focus, select:focus {
 
 ### บันทึกผลการทดลอง 3.2.3
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจองห้องพัก</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+        #summary {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            display: none;
+            background: #f9f9f9;
+            text-align: left;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>ระบบจองห้องพัก</h2>
+    
+    <form id="bookingForm">
+        <label for="fullname">ชื่อผู้จอง:</label>
+        <input type="text" id="fullname" required>
+        <br>
+
+        <label for="phone">เบอร์โทรศัพท์:</label>
+        <input type="tel" id="phone" required placeholder="กรอก 10 หลัก" maxlength="10">
+        <br>
+
+        <label for="roomtype">ประเภทห้อง:</label>
+        <select id="roomtype" name="roomtype" title="เลือกประเภทห้อง">
+            <option value="standard">Standard (สูงสุด 2 คน)</option>
+            <option value="deluxe">Deluxe (สูงสุด 3 คน)</option>
+            <option value="suite">Suite (สูงสุด 4 คน)</option>
+        </select>
+        <br>
+
+        <label for="guests">จำนวนผู้เข้าพัก:</label>
+        <input type="number" id="guests" min="1" max="2" value="1">
+        <br>
+
+        <label for="checkin">วันเช็คอิน:</label>
+        <input type="date" id="checkin" required>
+        <br>
+
+        <label for="checkout">วันเช็คเอาท์:</label>
+        <input type="date" id="checkout" required>
+        <br>
+
+        <button type="submit">จองห้องพัก</button>
+    </form>
+
+    <div id="summary">
+        <h3>สรุปการจอง</h3>
+        <p id="summaryText"></p>
+        <button id="confirmBooking">ยืนยันการจอง</button>
+        <button id="cancelBooking">ยกเลิก</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bookingForm = document.getElementById('bookingForm');
+            const summaryDiv = document.getElementById('summary');
+            const summaryText = document.getElementById('summaryText');
+            const confirmButton = document.getElementById('confirmBooking');
+            const cancelButton = document.getElementById('cancelBooking');
+            const phoneInput = document.getElementById('phone');
+
+           
+            phoneInput.addEventListener('input', function () {
+                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+            });
+
+            bookingForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                
+                const fullname = document.getElementById('fullname').value.trim();
+                const checkinInput = document.getElementById('checkin').value;
+                const checkoutInput = document.getElementById('checkout').value;
+                const phone = document.getElementById('phone').value.trim();
+                const roomtype = document.getElementById('roomtype');
+                const guests = document.getElementById('guests').value;
+
+                
+                if (!fullname || !checkinInput || !checkoutInput || !phone || !guests) {
+                    alert('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+                    return;
+                }
+
+                
+                const checkin = new Date(checkinInput);
+                const checkout = new Date(checkoutInput);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (checkin < today) {
+                    alert('กรุณาเลือกวันเช็คอินที่ยังไม่ผ่านมา');
+                    return;
+                }
+
+                if (checkout <= checkin) {
+                    alert('วันเช็คเอาท์ต้องมาหลังวันเช็คอิน');
+                    return;
+                }
+
+                
+                if (phone.length !== 10) {
+                    alert('กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก');
+                    return;
+                }
+
+                
+                const days = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+
+                
+                const roomtypeText = roomtype.options[roomtype.selectedIndex].text;
+
+                
+                summaryText.innerHTML = `
+                    <strong>ชื่อผู้จอง:</strong> ${fullname} <br>
+                    <strong>ประเภทห้อง:</strong> ${roomtypeText} <br>
+                    <strong>วันที่เข้าพัก:</strong> ${checkin.toLocaleDateString('th-TH')} <br>
+                    <strong>วันที่ออก:</strong> ${checkout.toLocaleDateString('th-TH')} <br>
+                    <strong>จำนวนวันที่พัก:</strong> ${days} วัน <br>
+                    <strong>จำนวนผู้เข้าพัก:</strong> ${guests} ท่าน
+                `;
+
+                summaryDiv.style.display = "block";
+            });
+
+            
+            confirmButton.addEventListener('click', function () {
+                alert('จองห้องพักเรียบร้อยแล้ว');
+                summaryDiv.style.display = "none";
+                bookingForm.reset();
+            });
+
+            
+            cancelButton.addEventListener('click', function () {
+                summaryDiv.style.display = "none";
+            });
+
+            
+            document.getElementById('checkin').addEventListener('change', function () {
+                document.getElementById('checkout').min = this.value;
+            });
+
+            
+            document.getElementById('roomtype').addEventListener('change', function () {
+                const guestsInput = document.getElementById('guests');
+                const roomTypeValue = this.value;
+
+                let maxGuests;
+                if (roomTypeValue === 'standard') {
+                    maxGuests = 2;
+                } else if (roomTypeValue === 'deluxe') {
+                    maxGuests = 3;
+                } else if (roomTypeValue === 'suite') {
+                    maxGuests = 4;
+                } else {
+                    maxGuests = 1;
+                }
+
+                guestsInput.max = maxGuests;
+
+                if (parseInt(guestsInput.value) > maxGuests) {
+                    guestsInput.value = maxGuests;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
 ```
 [รูปผลการทดลองที่ 3.2.3]
+![image](https://github.com/user-attachments/assets/d3c8a5a9-51b0-4eb7-8389-2c398be096a6)
 
 
 ## คำแนะนำเพิ่มเติม
