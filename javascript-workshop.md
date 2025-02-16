@@ -1008,10 +1008,160 @@ console.log("เลขคู่:", evenNumbers); // [2, 4]
 
 ### บันทึกผลการทดลอง 3.2.2
 ```html
-[บันทึกโค้ด ที่นี่]
+[บันทึกโค้ด ที่นี่]<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจองห้องพักออนไลน์</title>
+
+    <!-- นำเข้า Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- ลิงก์ไฟล์ CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>แบบฟอร์มจองห้องพัก</h1>
+        
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="fullname">ชื่อ-นามสกุล:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">อีเมล:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checkin">วันที่เช็คอิน:</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checkout">วันที่เช็คเอาท์:</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
+
+            <div class="form-group">
+                <label for="roomtype">ประเภทห้องพัก:</label>
+                <select id="roomtype" name="roomtype" required>
+                    <option value="">กรุณาเลือกประเภทห้องพัก</option>
+                    <option value="standard">ห้องมาตรฐาน</option>
+                    <option value="deluxe">ห้องดีลักซ์</option>
+                    <option value="suite">ห้องสวีท</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="guests">จำนวนผู้เข้าพัก:</label>
+                <input type="number" id="guests" name="guests" min="1" max="4" required>
+            </div>
+
+            <button type="submit" class="btn">จองห้องพัก</button>
+        </form>
+    </div>
+</body>
+</html>
+
+```
+```
+css
+body {
+    font-family: 'Sarabun', sans-serif;
+    background-color: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #34495e;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+
+.btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #3498db;
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+        max-width: 90%;
+    }
+}
+
 ```
 [รูปผลการทดลองที่ 3.2.2]
+![image](https://github.com/user-attachments/assets/94df5345-1d49-4f90-944f-afca52e01209)
+การทดสอบ และ สรุป
 
+1. ปรับขนาดของ input และปุ่ม
+2. ปรับแต่งให้มันอยู่ที่ตรงกลางให้หมด
+3. ปรับฟอนให้ดูใหญ่ขึ้นและมีความเป็นไทย มองแล้วเข้าใจง่าย
 
 ## ขั้นตอนที่ 3.2.3: การเพิ่มฟังก์ชันด้วย JavaScript
 
